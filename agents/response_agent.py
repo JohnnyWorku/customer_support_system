@@ -3,3 +3,7 @@
 # Resolution summary
 # Recommended actions
 # Escalation status (if applicable)
+
+class ResponseAgent:
+    def run(self):
+        pass

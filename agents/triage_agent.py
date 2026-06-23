@@ -3,8 +3,8 @@ import json
 from dotenv import load_dotenv
 
 from state import SupportState
-from utils.groq_provider import GroqProvider
-from utils.triage_agent_reponse_evaluator import TriageAgentResponseEvaluator
+from utils.groq.groq_provider import GroqProvider
+from utils.evaluators.triage_agent_reponse_evaluator import TriageAgentResponseEvaluator
 
 load_dotenv()
 
@@ -34,11 +34,11 @@ class TriageAgent:
         - account_management
 
         Rules:
-        - Return only JSON. In the form of '{
-            "catagory": "<YOUR ANSWER>",
-            "confidence": "<YOUR ANSWER>",
+        - Return only VALID JSON. In the form of {
+            "category": "<YOUR ANSWER>",
+            "confidence": confidence must be a decimal number between 0 and 1,
             "reason": "<YOUR EVIDENCE, FOR CHOOSING THE CATEGORY AND SETTING THE CONFIDENCE, FROM THE MESSAGE>"
-        }'
+        }
         - Do not create new categories.
         - If uncertain, choose the closest category and lower confidence.
         - If the situation is one of:
