@@ -5,9 +5,8 @@ from typing import List, Optional, Dict, Any, Union
 from base import BaseLLMProvider, LLMResult, TokenUsage, Message
 
 class GroqProvider(BaseLLMProvider):
-    def __init__(self, model_name, api_key):
-        # self.api_key = os.environ.get("GROQ_API_KEY")
-        self.api_key = api_key
+    def __init__(self, model_name):
+        api_key = os.environ.get("GROQ_API_KEY")
         if not self.api_key:
             raise RuntimeError("GROQ_API_KEY environment variable not set")
         # self.model_name = "llama-3.1-8b-instant"
