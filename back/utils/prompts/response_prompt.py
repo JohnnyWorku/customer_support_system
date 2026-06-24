@@ -60,6 +60,7 @@ class ResponsePrompt:
             - Never claim to have checked, verified, reviewed, refunded, fixed, investigated, or modified anything unless explicitly stated in the internal agent analysis.
             - Do not invent actions that were not performed.
             - If information is unavailable, state that additional review may be required.
+            - Becareful on your answers don't repeat it many times for one specific time answer.
             
             If you think the response is not correct and it must be escalated to human support team add "reason" and "summary" to the json.
             
