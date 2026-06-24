@@ -7,9 +7,9 @@ import os
 import json
 from dotenv import load_dotenv
 
-from state import SupportState
-from utils.groq.groq_provider import GroqProvider
-from utils.evaluators.response_evaluator import ResponseEvaluatorAgent
+from back.state import SupportState
+from back.utils.groq.groq_provider import GroqProvider
+from back.utils.evaluators.response_evaluator import ResponseEvaluatorAgent
 
 
 load_dotenv()

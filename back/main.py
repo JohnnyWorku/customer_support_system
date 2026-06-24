@@ -1,17 +1,17 @@
 from langgraph.graph import StateGraph, END
 
 # state
-from state import SupportState
+from back.state import SupportState
 
 # agents
-from agents.account_management_resolution_agent import AccountManagementResolutionAgent
-from agents.billing_resolution_agent import BillingResolutionAgent
-from agents.escalation_agent import EsclationAgent
-from agents.feature_request_agent import FeatureRequestAgent
-from agents.knowledge_agent import KnowledgeAgent
-from agents.response_agent import ResponseAgent
-from agents.technical_resolution_agent import TechnicalAgent
-from agents.triage_agent import TriageAgent
+from back.agents.account_management_resolution_agent import AccountManagementResolutionAgent
+from back.agents.billing_resolution_agent import BillingResolutionAgent
+from back.agents.escalation_agent import EsclationAgent
+from back.agents.feature_request_agent import FeatureRequestAgent
+from back.agents.knowledge_agent import KnowledgeAgent
+from back.agents.response_agent import ResponseAgent
+from back.agents.technical_resolution_agent import TechnicalAgent
+from back.agents.triage_agent import TriageAgent
 
 # routing function
 def route_ticket(state: SupportState):

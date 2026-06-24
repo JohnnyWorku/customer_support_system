@@ -2,7 +2,7 @@ import os
 import time
 import httpx
 from typing import List, Optional, Dict, Any, Union
-from utils.groq.base import BaseLLMProvider, LLMResult, TokenUsage, Message
+from back.utils.groq.base import BaseLLMProvider, LLMResult, TokenUsage, Message
 
 class GroqProvider(BaseLLMProvider):
     def __init__(self, model_name):

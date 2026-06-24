@@ -9,8 +9,8 @@
 # Generate escalation notes
 # Produce a summary for a human support representative (Sending it via email or Telegram is a plus )
 
-from state import SupportState
-from utils.tools.telegram_notifier import TelegramNotifier
+from back.state import SupportState
+from back.utils.tools.telegram_notifier import TelegramNotifier
 class EsclationAgent:
     def __init__(self):
         self.telegram = (TelegramNotifier())

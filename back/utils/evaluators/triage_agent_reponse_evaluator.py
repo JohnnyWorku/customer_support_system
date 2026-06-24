@@ -3,7 +3,7 @@ import os
 import json
 from dotenv import load_dotenv
 
-from utils.groq.groq_provider import GroqProvider
+from back.utils.groq.groq_provider import GroqProvider
 
 load_dotenv()
 
