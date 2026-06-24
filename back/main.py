@@ -113,8 +113,8 @@ app = workflow.compile()
 #     "message": "I was charged twice for my subscription."
 # })
 
-# # print("\nFINAL STATE")
-# # print(result)
+# print("\nFINAL STATE")
+# print(result.get("routing_path"))
 
 # print("\nGENERATED RESPONSE")
 # print(result.get("final_response"))
