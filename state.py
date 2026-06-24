@@ -13,5 +13,6 @@ class SupportState(TypedDict, total=False):
     escalation_summary: Optional[str]
     tools_used: List[str]
     routing_path: List[str]
+    generated_response: Optional[str]
     final_response: Optional[str]
     
