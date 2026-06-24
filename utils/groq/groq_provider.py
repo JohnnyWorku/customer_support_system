@@ -7,7 +7,7 @@ from utils.groq.base import BaseLLMProvider, LLMResult, TokenUsage, Message
 class GroqProvider(BaseLLMProvider):
     def __init__(self, model_name):
         api_key = os.environ.get("GROQ_API_KEY")
-        if not self.api_key:
+        if not api_key:
             raise RuntimeError("GROQ_API_KEY environment variable not set")
         # self.model_name = "llama-3.1-8b-instant"
         self.model_name = model_name
