@@ -1,6 +1,6 @@
 from typing import TypedDict, Optional, List
 
-class SupportState(TypedDict):
+class SupportState(TypedDict, total=False):
     ticket_id: str
     customer_id: str
     message: str
