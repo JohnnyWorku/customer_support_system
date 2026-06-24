@@ -3,7 +3,7 @@ import os
 
 from back.utils.groq.groq_provider import GroqProvider
 from back.state import SupportState
-from utils.prompts.response_evaluator_prompt import ResponseEvaluatorPrompt
+from back.utils.prompts.response_evaluator_prompt import ResponseEvaluatorPrompt
 
 class ResponseEvaluatorAgent:
     def __init__(self):

@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 
 from back.utils.groq.groq_provider import GroqProvider
-from utils.prompts.triage_evaluator_prompt import TriageEvaluatorPrompt
+from back.utils.prompts.triage_evaluator_prompt import TriageEvaluatorPrompt
 
 
 load_dotenv()
