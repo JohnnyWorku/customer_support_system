@@ -40,6 +40,15 @@ class TriageAgentResponseEvaluator:
         
         
     def evaluator(self, message, response):
+        json_format = """
+            {
+                "approved": true,
+                "confidence": confidence must be a decimal number between 0 and 1,
+                "reason": "..."
+            }
+        """
+        
+        
         review_prompt = f"""
             You are triage agent response reviewer.
             
@@ -59,14 +68,23 @@ class TriageAgentResponseEvaluator:
 
             Determine whether the classification is correct (in possible categories and correspondant with the message).
 
-            Return ONLY VALID JSON like:
-            {
-                "approved": True,
-                "confidence": confidence must be a decimal number between 0 and 1,
-                "reason": "..."
-            }
+            Return ONLY VALID JSON like: {json_format}
+            
+            - No markdown.
+            - No explanation.
+            - No backticks.
+            - Use lowercase true/false.
+            
+            If the response is not right and you think it needs escalation:
+                - add "summary" key in the json and put your summary there.
         """
         
-        response = self.TRIAGE_RESPONSE_EVALUATOR_LLM.generate_response(review_prompt)
+        try: 
+            review_response = self.TRIAGE_RESPONSE_EVALUATOR_LLM.generate_response(review_prompt)
+            
+            review_response_text = review_response.text
+            
+            return review_response_text
         
-        return response
+        except Exception as e:
+            return str(e)
