@@ -3,63 +3,15 @@ import os
 
 from back.utils.groq.groq_provider import GroqProvider
 from back.state import SupportState
+from utils.prompts.response_evaluator_prompt import ResponseEvaluatorPrompt
+
 class ResponseEvaluatorAgent:
     def __init__(self):
         self.MODEL_NAME = os.environ.get("RESPONSE_AGENT_RESPONSE_EVALUATOR_MODEL_NAME")
         self.RESPONDER_RESPONSE_EVALUATOR_LLM = GroqProvider(self.MODEL_NAME)
         
-    def evaluator(self, customer_message, response, state: SupportState):
-        json_format = {
-            "approved": "true/false",
-            "confidence": 0.95,
-            "reason": "short explanation"
-            }
-        
-        
-        review_prompt = f"""
-            You are a strict customer support QA reviewer.
-
-            Your task is to evaluate whether the generated response is correct, safe, and appropriate.
-
-            ---
-
-            Customer message:
-            {customer_message}
-
-            Category:
-            {state["category"]}
-
-            Confidence:
-            {state["confidence"]}
-
-            Internal agent response:
-            {state["agent_response"]}
-
-            Generated customer response:
-            {state["generated_response"]}
-
-            ---
-
-            Check the following:
-
-            1. Is the response relevant to the customer message?
-            2. Does it match the category?
-            3. Is it consistent with confidence level?
-            4. Is it safe and professional?
-            5. Does it avoid hallucination or incorrect claims?
-
-            ---
-
-            Return ONLY valid JSON: {json_format}
-            
-            - No markdown.
-            - No explanation.
-            - No backticks.
-            - Use lowercase true/false.
-            - No quotes only Json Not dictionary (use double quotes) only json.
-            
-            If you think the response is not correct and it must be escalated to human support team add "reason" and "summary" to the json.
-        """
+    def evaluator(self, state: SupportState):
+        review_prompt = ResponseEvaluatorPrompt.prompt_dumper(state)
         
         try: 
             review_response = self.RESPONDER_RESPONSE_EVALUATOR_LLM.generate_response(review_prompt)

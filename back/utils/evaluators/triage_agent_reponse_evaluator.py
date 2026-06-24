@@ -4,6 +4,8 @@ import json
 from dotenv import load_dotenv
 
 from back.utils.groq.groq_provider import GroqProvider
+from utils.prompts.triage_evaluator_prompt import TriageEvaluatorPrompt
+
 
 load_dotenv()
 
@@ -39,45 +41,8 @@ class TriageAgentResponseEvaluator:
             return False, str(e)
         
         
-    def evaluator(self, message, response):
-        json_format = """
-            {
-                "approved": true,
-                "confidence": confidence must be a decimal number between 0 and 1,
-                "reason": "..."
-            }
-        """
-        
-        
-        review_prompt = f"""
-            You are triage agent response reviewer.
-            
-            possible_categories = [
-                "billing",
-                "technical_issue",
-                "feature_request",
-                "general_inquiry",
-                "account_management"
-            ]
-            
-            Customer Message:
-            {message}
-
-            Classification:
-            {response}
-
-            Determine whether the classification is correct (in possible categories and correspondant with the message).
-
-            Return ONLY VALID JSON like: {json_format}
-            
-            - No markdown.
-            - No explanation.
-            - No backticks.
-            - Use lowercase true/false.
-            
-            If the response is not right and you think it needs escalation:
-                - add "summary" key in the json and put your summary there.
-        """
+    def evaluator(self, response, state):
+        review_prompt = TriageEvaluatorPrompt.prompt_dumper(response, state)
         
         try: 
             review_response = self.TRIAGE_RESPONSE_EVALUATOR_LLM.generate_response(review_prompt)

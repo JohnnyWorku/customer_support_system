@@ -52,8 +52,8 @@ class TriageAgent:
                 continue
 
             evaluation = self.EVALUATOR.evaluator(
-                message,
-                response_text
+                response_text,
+                state
             )
 
             evaluation_data = json.loads(evaluation)
