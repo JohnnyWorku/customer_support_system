@@ -233,6 +233,7 @@ class TriagePrompt:
             * No explanations outside JSON.
             * Confidence must be between 0 and 1.
             * Category must exactly match one of the valid categories.
+            - CAREFULLY THINK ON IT. BECAREFULL.
 
             Customer message:
 
