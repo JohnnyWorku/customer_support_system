@@ -106,8 +106,15 @@ workflow.add_edge("final_response", END)
 
 # Initiating the app
 app = workflow.compile()
-app.invoke({
-    "ticket_id": "T-1001",
-    "customer_id": "C-500",
-    "message": "I can't see my hand. My hand means my physical hand my body."
-})
+
+# result = app.invoke({
+#     "ticket_id": "T-1001",
+#     "customer_id": "C-500",
+#     "message": "I was charged twice for my subscription."
+# })
+
+# # print("\nFINAL STATE")
+# # print(result)
+
+# print("\nGENERATED RESPONSE")
+# print(result.get("final_response"))
