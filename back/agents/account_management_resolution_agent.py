@@ -6,7 +6,7 @@ import os
 import json
 from dotenv import load_dotenv
 
-from utils.prompts.account_prompt import AccountPrompt
+from back.utils.prompts.account_prompt import AccountPrompt
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
 

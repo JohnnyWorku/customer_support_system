@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
 from back.utils.evaluators.response_evaluator import ResponseEvaluatorAgent
-from utils.prompts.response_prompt import ResponsePrompt
+from back.utils.prompts.response_prompt import ResponsePrompt
 
 
 load_dotenv()

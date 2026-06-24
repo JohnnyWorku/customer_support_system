@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
-from utils.prompts.knowledge_prompt import KnowledgePrompt
+from back.utils.prompts.knowledge_prompt import KnowledgePrompt
 
 class KnowledgeAgent:
     def __init__(self):

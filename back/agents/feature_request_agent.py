@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
-from utils.prompts.feature_prompt import FeaturePrompt
+from back.utils.prompts.feature_prompt import FeaturePrompt
 
 class FeatureRequestAgent:
     def __init__(self):

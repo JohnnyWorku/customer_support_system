@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
-from utils.prompts.technical_prompt import TechnicalPrompt
+from back.utils.prompts.technical_prompt import TechnicalPrompt
 
 class TechnicalAgent:
     def __init__(self):

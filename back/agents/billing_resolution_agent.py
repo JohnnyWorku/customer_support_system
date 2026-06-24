@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
-from utils.prompts.billing_prompt import BillingPrompt
+from back.utils.prompts.billing_prompt import BillingPrompt
 
 class BillingResolutionAgent:
     def __init__(self):
