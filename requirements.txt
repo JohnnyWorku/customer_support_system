@@ -2,3 +2,4 @@ python-dotenv
 groq
 httpx
 langgraph
+requests
