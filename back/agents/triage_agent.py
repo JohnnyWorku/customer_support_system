@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from back.state import SupportState
 from back.utils.groq.groq_provider import GroqProvider
 from back.utils.evaluators.triage_agent_reponse_evaluator import TriageAgentResponseEvaluator
+from back.utils.prompts.triage_prompt import TriagePrompt
 
 load_dotenv()
 
@@ -34,50 +35,7 @@ class TriageAgent:
         message = state["message"]
         state["routing_path"].append("triaging_issue")
         
-        json_format = """
-            {
-                "category": "<YOUR ANSWER>",
-                "confidence": confidence must be a decimal number between 0 and 1,
-                "reason": "<YOUR EVIDENCE, FOR CHOOSING THE CATEGORY AND SETTING THE CONFIDENCE, FROM THE MESSAGE>"
-            }
-        """
-        
-        prompt = f"""
-        You are a support ticket classifier.
-
-        Classify the customer message into EXACTLY one of:
-
-        - billing
-        - technical_issue
-        - feature_request
-        - general_inquiry
-        - account_management
-        - escalation
-
-        Rules:
-        - Return only VALID JSON. In the form of {json_format}
-        - No markdown.
-        - No explanation.
-        - No backticks.
-        - Use lowercase true/false.
-        - Do not create new categories.
-        - If the situation is one of:
-            uncertain
-            unclear
-            non sensical
-            Missing information
-            Complex technical issue
-            Account security concern
-            
-            choose the closest category and lower confidence.
-            
-            if you choose escalation:
-                - add "summary" key in the json  -- DON'T FORGET THIS.
-
-
-        Customer message:
-        {message}
-        """
+        prompt = TriagePrompt.prompt_dumper(state)
         
         for _ in range(3):
             response = self.TRIAGE_LLM.generate_response(prompt)
