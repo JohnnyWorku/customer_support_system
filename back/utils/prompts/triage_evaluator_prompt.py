@@ -1,7 +1,7 @@
 from back.state import SupportState
 
 
-class TraigeEvaluatorPrompt:
+class TriageEvaluatorPrompt:
     def prompt_dumper(response, state: SupportState):
         json_format = """
             {
