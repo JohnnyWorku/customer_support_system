@@ -1,7 +1,7 @@
 from back.state import SupportState
 
 
-class TechnicalSupport:
+class TechnicalPrompt:
     def prompt_dumper(state: SupportState):
         json_format = """
             {
