@@ -1,6 +1,6 @@
 # streamlit_app.py
 
-import streamlit as st
+import front.streamlit as st
 from back.main import app
 
 st.set_page_config(
