@@ -20,7 +20,7 @@ def route_ticket(state: SupportState):
 # escalation check
 def escalation_decision(state: SupportState):
 
-    if state["escalation_required"]:
+    if state.get("escalation_required", False):
         return "escalate"
 
     return "final"
@@ -60,6 +60,8 @@ workflow.add_node("triage", triage_agent.classify)
 
 workflow.add_node("escalation_check", lambda state: state)
 
+workflow.add_node("final_response", response_agent.run)
+
 # Entry point
 workflow.set_entry_point("ticket_intake")
 
@@ -73,8 +75,9 @@ workflow.add_conditional_edges(
         "billing": "billing_agent",
         "technical_issue": "technical_agent",
         "feature_request": "feature_agent",
-        "general_inquery": "knowledge_agent",
+        "general_inquiry": "knowledge_agent",
         "account_management": "account_agent",
+        "escalation": "escalation_agent",
     }
 )
 
@@ -99,3 +102,12 @@ workflow.add_conditional_edges(
 workflow.add_edge("escalation_agent", "final_response")
 
 workflow.add_edge("final_response", END)
+
+
+# Initiating the app
+app = workflow.compile()
+app.invoke({
+    "ticket_id": "T-1001",
+    "customer_id": "C-500",
+    "message": "I can't see my hand. My hand means my physical hand my body."
+})
