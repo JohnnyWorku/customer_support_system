@@ -33,7 +33,7 @@ class TriageAgent:
 
     def classify(self, state: SupportState):
         message = state["message"]
-        state["routing_path"].append("triaging_issue")
+        state["routing_path"].append("triage_agent")
         
         prompt = TriagePrompt.prompt_dumper(state)
         

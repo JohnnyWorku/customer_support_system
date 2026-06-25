@@ -37,6 +37,7 @@ class ResponseAgent:
         
         if evaluation_data["approved"]:
                 state["final_response"] = state["generated_response"]
+                state["routing_path"].append("response_agent")
                 return state
 
         state["category"] = "escalation"
